@@ -307,7 +307,8 @@ function M.move_cursor_to(w, line, column, opts)
   -- update the jump list
   vim.api.nvim_set_current_win(w)
   local cursor = vim.api.nvim_win_get_cursor(0)
-  vim.api.nvim_buf_set_mark(0, "'", cursor[1], cursor[2], {})
+  vim.cmd("normal! m'") -- TODO: for some reason this updates the jumplist but nvim_buf_set_mark doesn't
+  -- vim.api.nvim_buf_set_mark(0, "'", cursor[1], cursor[2], {})
   vim.api.nvim_win_set_cursor(w, { line, column })
 end
 
